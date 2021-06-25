@@ -1,0 +1,59 @@
+<div class="list row">
+
+    <div class="col-md-6">
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Search by name" [(ngModel)]="name"/>
+        <div class="input-group-append">
+          <button
+            class="btn btn-outline-secondary" type="button" (click)="searchName()">Search
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="input-group mb-3">
+          <input type="number" min="1" max="20" class="form-control" placeholder="Search by Age" [(ngModel)]="age"/>
+          <div class="input-group-append">
+            <button
+              class="btn btn-outline-secondary" type="button" (click)="searchAge()">Search
+            </button>
+          </div>
+        </div>
+      </div>
+
+    <div class="col-md-6">
+      <h4>Pets List</h4>
+      <ul class="list-group">
+        <li
+          class="list-group-item" *ngFor="let pet of pets; let i = index" [class.active]="i == currentIndex" (click)="setActivePet(pet, i)">{{ pet.name }}
+        </li>
+      </ul>
+  
+      <button class="m-3 btn btn-sm btn-danger" (click)="removeAllPets()">Remove All Pets</button>
+    </div>
+
+    <div class="col-md-6">
+      <div *ngIf="currentPet.id">
+        <h4>Pet</h4>
+        <div>
+          <label><strong>Name:</strong></label> {{ currentPet.name }}
+        </div>
+        <div>
+          <label><strong>Age:</strong></label>{{ currentPet.age }}
+        </div>
+        <div>
+          <label><strong>Exact Age:</strong></label>{{ currentPet.exact_age ? "Yes" : "No" }}
+        </div>
+  
+        <a class="badge badge-warning" routerLink="/pets/{{ currentPet.id }}">Edit</a>
+      </div>
+  
+      <div *ngIf="!currentPet">
+        <br />
+        <p>Please click on a Pet...</p>
+      </div>
+    </div>
+
+</div>
+  

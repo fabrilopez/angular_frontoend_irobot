@@ -1,0 +1,39 @@
+<div>
+    <div *ngIf="currentPet.id" class="edit-form">
+      <h4>Pet</h4>
+      <form>
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" class="form-control" id="name" [(ngModel)]="currentPet.name" name="name"/>
+        </div>
+        <div class="form-group">
+          <label for="age">Age</label>
+          <input type="number" class="form-control" id="age" [(ngModel)]="currentPet.age" name="age"/>
+        </div>
+          
+        <div class="form-group">          
+          <input class="form-check-input ml-1" type="checkbox" [(ngModel)]="currentPet.exact_age" name="exact_age">
+          <label class="ml-4" for="exact_age">Exact Age</label>  
+        </div>  
+      </form>
+       
+      <button class="badge badge-danger mr-2" (click)="deletePet()">
+        Delete
+      </button>
+  
+      <button
+        type="submit"
+        class="badge badge-success mb-2"
+        (click)="updatePet()" >
+        Update
+      </button>      
+
+      <p>{{ message }}</p>
+    </div>    
+  
+    <div
+      *ngIf="!currentPet.id">
+      <br />
+      <p>Cannot access this Pet record...</p>
+    </div>
+  </div>
